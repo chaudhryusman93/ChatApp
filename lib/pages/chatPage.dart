@@ -75,7 +75,7 @@ class _ChatScreenState extends State<ChatScreen> with FormValidationMixin {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
-    final clientHeight = screenHeight - kToolbarHeight;
+    // final clientHeight = screenHeight - kToolbarHeight;
     //  to get current Date
     DateTime dateAndTime = DateTime.now();
     String dateNow =

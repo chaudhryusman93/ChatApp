@@ -158,7 +158,7 @@ class _RegistrationPageState extends State<RegistrationPage>
   }
 
   Future<void> PhoneAuthentication() async {
-    await firebaseAuth.setSettings(appVerificationDisabledForTesting: true);
+    // await firebaseAuth.setSettings(appVerificationDisabledForTesting: true);
     await firebaseAuth.verifyPhoneNumber(
       phoneNumber: phoneNumberController.text.trim(),
       verificationCompleted: (PhoneAuthCredential credential) async {

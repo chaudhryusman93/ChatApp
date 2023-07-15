@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final ScreenSize = MediaQuery.of(context).size;
-    final ScreenWidth = ScreenSize.width;
+    // final ScreenWidth = ScreenSize.width;
     final ScreenHeight = ScreenSize.height;
     final ClientHeight = ScreenHeight - kToolbarHeight;
     ;
