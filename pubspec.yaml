@@ -39,9 +39,13 @@ dependencies:
   firebase_auth: ^4.6.3
   cloud_firestore: ^4.8.1
   pin_code_text_field: ^1.8.0
-  shared_preferences: ^2.1.2
+  shared_preferences:
   image_picker: ^0.8.9
   firebase_storage: ^11.2.3
+  firebase_messaging: ^14.7.2
+  sqflite: ^2.3.0
+  # flutter_local_notifications: ^16.1.0
+  http: ^1.1.0
   flutter_launcher_icons: ^0.13.1
 flutter_launcher_icons:
   android: "launcher_icon"

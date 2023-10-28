@@ -57,7 +57,8 @@ class _HomePageState extends State<HomePage> {
               Map<String, dynamic> map =
                   snapshot.data!.docs[index].data() as Map<String, dynamic>;
 
-              ChatUser chatUser = ChatUser.fromMap(map);
+              ModelClassForProfileData chatUser =
+                  ModelClassForProfileData.fromMap(map);
               return Padding(
                 padding: EdgeInsets.only(top: ClientHeight * 0.005),
                 child: Card(
@@ -70,14 +71,15 @@ class _HomePageState extends State<HomePage> {
                           return ChatScreen(
                             phoneNumber: chatUser.phoneNumber,
                             name: chatUser.name,
+                            token: chatUser.token,
                           );
                         },
                       ));
                     },
                     leading: CircleAvatar(
                         radius: 50,
-                        backgroundImage: NetworkImage(chatUser.imageUrl)),
-                    title: Text(chatUser.name),
+                        backgroundImage: NetworkImage(chatUser.imageUrl!)),
+                    title: Text(chatUser.name!),
                   ),
                 ),
               );

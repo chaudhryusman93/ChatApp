@@ -37,11 +37,11 @@ class UserDrawer extends StatelessWidget {
               ));
             }
 
-            var data = snapshot.data! as DocumentSnapshot;
+            var data = snapshot.data as DocumentSnapshot;
 
             return Column(
               children: [
-                //CircleAvatar for Image
+                // CircleAvatar for Image
                 Padding(
                   padding: EdgeInsets.only(
                       top: ClientHeight * 0.06, right: ScreenWidth * 0.09),

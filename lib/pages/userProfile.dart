@@ -4,6 +4,7 @@ import 'package:chatter/pages/RegisterationPage.dart';
 import 'package:chatter/pages/homePage.dart';
 import 'package:chatter/validators/validators.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -46,11 +47,8 @@ class _UserProfileState extends State<UserProfile> with FormValidationMixin {
   }
 
 // Add User details to firestore
-  Future<void> addUserDetails({
-    String? name,
-    String? imageUrl,
-    String? phoneNumber,
-  }) async {
+  Future<void> addUserDetails(
+      {String? name, String? imageUrl, String? phoneNumber, var token}) async {
     await FirebaseFirestore.instance
         .collection('users')
         .doc(phoneNumberController.text)
@@ -58,6 +56,7 @@ class _UserProfileState extends State<UserProfile> with FormValidationMixin {
       'name': name,
       'imageUrl': imageUrl,
       'phoneNumber': phoneNumber,
+      'token': token
     });
   }
 
@@ -135,16 +134,21 @@ class _UserProfileState extends State<UserProfile> with FormValidationMixin {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
                     onPressed: () async {
+                      var tokenId = await FirebaseMessaging.instance.getToken();
                       putFile?.whenComplete(() {
                         ref!.getDownloadURL().then((value) {
                           // Add to firestore
                           addUserDetails(
-                            name: nameController.text.trim(),
-                            imageUrl: value,
-                            phoneNumber: phoneNumberController.text,
-                          );
+                              name: nameController.text.trim(),
+                              imageUrl: value,
+                              phoneNumber: phoneNumberController.text,
+                              token: tokenId);
 
-                          Navigator.of(context).pushNamed(HomePage.pageName);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              ));
                         });
                       });
                     },

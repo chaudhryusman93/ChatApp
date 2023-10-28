@@ -140,7 +140,11 @@ class _OtpPageState extends State<OtpPage> {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("Verified Successfully")));
 
-      Navigator.of(context).pushNamed(UserProfile.pageName);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => UserProfile(),
+          ));
     }).onError((error, stackTrace) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(error.toString())));

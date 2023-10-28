@@ -1,11 +1,22 @@
-import 'package:chatter/Routes/routes.dart';
+// import 'package:chatter/Routes/routes.dart';
+import 'dart:developer';
+
+import 'package:chatter/notification/notification.dart';
 import 'package:chatter/pages/RegisterationPage.dart';
 import 'package:chatter/pages/homePage.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(
+  RemoteMessage remoteMessage,
+) async {
+  log('FirebaseMessagingUtil::_firebaseMessagingBackgroundHandler, ${remoteMessage.messageId}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +27,10 @@ void main() async {
       // messagingSenderId: "974407294666",
       // appId: "1:974407294666:web:ee3da34869dadc757c1e33")
       );
+
+  await FirebaseMessaging.instance.requestPermission();
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   runApp(MyApp());
 }
@@ -67,7 +82,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'My App',
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: onGenerateRoute,
+      // onGenerateRoute: onGenerateRoute,
       theme: ThemeData(
         useMaterial3: true,
         // Define your app's theme

@@ -1,3 +1,4 @@
+import 'package:chatter/notification/notification.dart';
 import 'package:chatter/validators/validators.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,12 +7,12 @@ import 'package:flutter/material.dart';
 class ChatScreen extends StatefulWidget {
   final String? name;
   final String? phoneNumber;
-  // final String? token;
+  final String? token;
 
   const ChatScreen({
     Key? key,
     this.name,
-    // required this.token,
+    required this.token,
     this.phoneNumber,
   }) : super(key: key);
   static const pageName = '/chatScreen';
@@ -200,6 +201,10 @@ class _ChatScreenState extends State<ChatScreen> with FormValidationMixin {
                         currentDate: dateNow,
                         currentTime: timeNow,
                         timeStamp: dateAndTime.toString());
+                    triggerNotifiation(
+                        tittle: widget.name!,
+                        body: _messageController.text,
+                        tokenId: widget.token);
                     _messageController.clear();
                   },
                 ),
