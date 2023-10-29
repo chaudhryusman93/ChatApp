@@ -3,7 +3,7 @@ import 'package:chatter/pages/RegisterationPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../modelClasses/ChatUsers.dart';
-import 'chatPage.dart';
+import '../drawer/chatPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -69,9 +69,9 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
                           return ChatScreen(
-                            phoneNumber: chatUser.phoneNumber,
-                            name: chatUser.name,
-                            token: chatUser.token,
+                            phoneNumber: chatUser.phoneNumber!,
+                            name: chatUser.name!,
+                            token: chatUser.token!,
                           );
                         },
                       ));
