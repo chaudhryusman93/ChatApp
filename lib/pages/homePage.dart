@@ -3,7 +3,7 @@ import 'package:chatter/pages/RegisterationPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../modelClasses/ChatUsers.dart';
-import '../drawer/chatPage.dart';
+import 'chatPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
